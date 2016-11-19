@@ -9,6 +9,31 @@
   </div>
 
   <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_field :description, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :street_address %><br />
+    <%= f.text_field :street_address, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :state %><br />
+    <%= f.text_field :state, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :zip %><br />
+    <%= f.text_field :zip, autofocus: true %>
+  </div>
+
+  <div class="field">
     <%= f.label :password %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>

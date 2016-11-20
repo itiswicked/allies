@@ -1,0 +1,39 @@
+.requests-show {
+  margin-top: 10px;
+  text-align: center;
+
+  .small-profile-pic {
+    height: 38px;
+    border-radius: 50px;
+  }
+
+  .stars, h2 {
+    display: inline;
+  }
+
+  .text-bubble {
+    margin: 5px auto 5px auto;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 95%;
+  }
+
+  .fa-arrow-down {
+    color: #ccc;
+    font-size: 2rem;
+  }
+
+  .trip-time-details {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    * {
+      margin-left: 2px;
+      margin-right: 2px;
+    }
+  }
+
+  .accept {
+    width: 100%;
+  }
+}

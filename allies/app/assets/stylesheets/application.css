@@ -12,4 +12,23 @@
  *
  *= require_tree .
  *= require_self
+ *= require foundation_and_overrides
+
  */
+
+h1, h2, p {
+  margin: 0;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+
+h2 {
+  font-size: 1.2rem;
+}
+
+.fa-star, .fa-star-half-o {
+  color: tomato;
+}

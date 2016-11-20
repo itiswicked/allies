@@ -4,8 +4,53 @@
   <%= devise_error_messages! %>
 
   <div class="field">
+    <%= f.label :first_name %><br />
+    <%= f.text_field :first_name, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :last_name %><br />
+    <%= f.text_field :last_name, autofocus: true %>
+  </div>
+
+  <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.fields_for :organization do |organization_form| %>
+      <%= organization_form.label :name %><br />
+      <%= organization_form.text_field :name, autofocus: true %>
+    <% end %>
+  </div>
+
+  <div class="field">
+   <%= f.fields_for :organization do |organization_form| %>
+    <%= organization_form.label :description %><br />
+    <%= organization_form.text_field :description, autofocus: true %>
+   <% end %>
+  </div>
+
+  <div class="field">
+    <%= f.fields_for :organization do |organization_form| %>
+      <%= organization_form.label :street_address %><br />
+      <%= organization_form.text_field :street_address, autofocus: true %>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= f.fields_for :organization do |organization_form| %>
+      <%= organization_form.label :state %><br />
+      <%= organization_form.text_field :state, autofocus: true %>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= f.fields_for :organization do |organization_form| %>
+      <%= organization_form.label :zip %><br />
+      <%= organization_form.text_field :zip, autofocus: true %>
+    <% end %>
   </div>
 
   <div class="field">

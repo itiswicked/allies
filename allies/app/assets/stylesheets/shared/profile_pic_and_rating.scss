@@ -1,0 +1,15 @@
+.profile-pic-and-rating {
+  margin: 0 auto;
+  text-align: center;
+
+  .profile-picture {
+    display: inline-block;
+    border-radius: 50%;
+    height: 250px;
+    margin-top: 40px;
+  }
+
+  .big-star {
+    font-size: 2.5rem;
+  }
+}

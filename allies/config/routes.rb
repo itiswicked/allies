@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :users, only: [:show]
   resources :ratings, only: [:new, :create]
   resources :organizations
+  resources :requests, only: [:show]
 
   namespace :api do
     namespace :v1 do

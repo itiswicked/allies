@@ -1,0 +1,46 @@
+.ratings-show {
+  text-align: left;
+  margin: 0 5px 0 5px;
+
+  .title {
+    border-bottom: 1px solid #cccccc;
+  }
+}
+
+.review {
+  border-bottom: 1px solid #cccccc;
+  h2 {
+    display: inline;
+  }
+
+  .stars {
+    display: inline;
+  }
+}
+
+.ratings-new {
+    text-align: center;
+  .rating {
+    color: white;
+    margin: 0 auto;
+    background-color: #2199e8;
+    padding: 10px 0 0 0;
+    width: 95%;
+    border-radius: 5px;
+
+    i.fa-star-o, i.fa-star {
+      cursor: pointer;
+      font-size: 50px;
+      padding: 0 10px;
+      color: white;
+      transition: all 150ms;
+      display: inline-block;
+      transform-origin: center bottom;
+    }
+
+    input {
+      margin: 0 auto 10px auto;
+      width: 95%;
+    }
+  }
+}

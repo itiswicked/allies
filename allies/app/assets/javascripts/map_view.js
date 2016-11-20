@@ -1,5 +1,5 @@
 /**
- * Moves the map 
+ * Moves the map
   *
    * @param  {H.Map} map      A HERE Map instance within the application
     */
@@ -100,73 +100,77 @@ function startClustering(map, data, isIncident) {
     */
 
 //Step 1: initialize communication with the platform
-var platform = new H.service.Platform({
-      app_id: '1RfiaGtQvYivGpD7yFZQ',
-      app_code: 'rGmfPSL70HTKO6A2iUoKGQ',
-      useCIT: true,
-      useHTTPS: true
-});
-var defaultLayers = platform.createDefaultLayers();
+$(document).ready(function() {
 
-//Step 2: initialize a map  - not specificing a location will give a whole world view.
-var map = new H.Map(document.getElementById('map'),
-          defaultLayers.normal.map);
 
-//Step 3: make the map interactive
-// MapEvents enables the event system
-// Behavior implements default interactions for pan/zoom (also on mobile touch environments)
-var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
+  var platform = new H.service.Platform({
+        app_id: '1RfiaGtQvYivGpD7yFZQ',
+        app_code: 'rGmfPSL70HTKO6A2iUoKGQ',
+        useCIT: true,
+        useHTTPS: true
+  });
+  var defaultLayers = platform.createDefaultLayers();
 
-// Create the default UI components
-var ui = H.ui.UI.createDefault(map, defaultLayers);
+  //Step 2: initialize a map  - not specificing a location will give a whole world view.
+  var map = new H.Map(document.getElementById('map'),
+            defaultLayers.normal.map);
 
-// Read a page's GET URL variables and return them as an associative array
-function getUrlVars() {
-      var vars = [], hash;
-      var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
-      for(var i = 0; i < hashes.length; i++)
-      {
-          hash = hashes[i].split('=');
-          vars.push(hash[0]);
-          vars[hash[0]] = hash[1];
-      }
-      return vars;
-}
-var dataArray = [];
-var incidents = Boolean(getUrlVars()['incidents']);
-// get incidents or allies, whichever we're looking for
-jsonFile = (incidents === true) ? 'http://localhost:8000/data/mock_incidents.json' : 'http://localhost:8000/data/mock_allies.json';
-jQuery.getJSON(jsonFile, function (data) {
-      var time = parseInt(getUrlVars()['time']) || -1;
-      // will evaluate to false if no url param included
-      var isIncident = Boolean(getUrlVars()['incident']);
-      var filteredData = [];
-      switch (time) {
-          case 1:
-              filteredData = data.filter(function(n) {
-                  date1 = new Date(n.time);
-                  return date1.getHours() < 8;
-              });
-              break;
-          case 2:
-              filteredData = data.filter(function(n) {
-                  date1 = new Date(n.time);
-                  return (date1.getHours() >= 8 && date1.getHours() < 16);
-              });
-              break;
-          case 3:
-              filteredData = data.filter(function(n) {
-                  date1 = new Date(n.time);
-                  return (date1.getHours() >= 16);
-              });
-              break;
-          default:
-              // default to showing all incidents
-              filteredData = data;
-              break;
-      }
-      startClustering(map, filteredData, incidents);
-});
+  //Step 3: make the map interactive
+  // MapEvents enables the event system
+  // Behavior implements default interactions for pan/zoom (also on mobile touch environments)
+  var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
 
-// Now use the map as required...
-moveMap(map);
+  // Create the default UI components
+  var ui = H.ui.UI.createDefault(map, defaultLayers);
+
+  // Read a page's GET URL variables and return them as an associative array
+  function getUrlVars() {
+        var vars = [], hash;
+        var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+        for(var i = 0; i < hashes.length; i++)
+        {
+            hash = hashes[i].split('=');
+            vars.push(hash[0]);
+            vars[hash[0]] = hash[1];
+        }
+        return vars;
+  }
+  var dataArray = [];
+  var incidents = Boolean(getUrlVars()['incidents']);
+  // get incidents or allies, whichever we're looking for
+  jsonFile = (incidents === true) ? 'http://localhost:3000/api/v1/incidents' : 'http://localhost:3000/api/v1/allies';
+  jQuery.getJSON(jsonFile, function (data) {
+        var time = parseInt(getUrlVars()['time']) || -1;
+        // will evaluate to false if no url param included
+        var isIncident = Boolean(getUrlVars()['incident']);
+        var filteredData = [];
+        switch (time) {
+            case 1:
+                filteredData = data.filter(function(n) {
+                    date1 = new Date(n.time);
+                    return date1.getHours() < 8;
+                });
+                break;
+            case 2:
+                filteredData = data.filter(function(n) {
+                    date1 = new Date(n.time);
+                    return (date1.getHours() >= 8 && date1.getHours() < 16);
+                });
+                break;
+            case 3:
+                filteredData = data.filter(function(n) {
+                    date1 = new Date(n.time);
+                    return (date1.getHours() >= 16);
+                });
+                break;
+            default:
+                // default to showing all incidents
+                filteredData = data;
+                break;
+        }
+        startClustering(map, filteredData, incidents);
+  });
+
+  // Now use the map as required...
+  moveMap(map);
+})

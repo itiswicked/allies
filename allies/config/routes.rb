@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   resources :users, only: [:show]
   resources :ratings, only: [:new, :create]
   resources :organizations
-  resources :requests, only: [:show]
+  resources :requests, only: [:index, :show]
+  resources :routes, only: [:show]
 
   namespace :api do
     namespace :v1 do
@@ -13,5 +14,8 @@ Rails.application.routes.draw do
     end
   end
 
+  devise_scope :user do
+    root to: "devise/sessions#new"
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
